@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Temperature Converter</title>
+    <style>
+        #converter {
+            height: auto;
+            width: 20vw;
+            background-color: lightblue;
+            margin: auto;
+            text-align: center;
+        }
+
+        #selection {
+            text-align: center;
+            /* float: right; */
+            margin: auto;
+            white-space: nowrap;
+        }
+
+        #tempinput {
+            padding-left: 10%;
+            float: left;
+        }
+
+        #tempsubmit {
+            float: right;
+        }
+
+        #btnlbl {
+            float: right;
+            font-size: .75em;
+            color: red;
+            padding-right: 2px;
+        }
+
+        p {
+            padding: 5%;
+            padding-left: 20%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="converter">
+        <h1>Temperature Converter</h1>
+        <div id="tempinput">
+            <label for="temptxtbox">
+                <input type="text" name="tempinput" id="temptxtbox" placeholder="Enter temperature">
+            </label><br>
+            <button id="tempsubmit" onclick="submit()">Submit</button>
+            <label for="tempsubmit" id="btnlbl">
+                
+            </label>
+        </div>
+        <div id="selection">
+            <input type="radio" name="tempselection" id="ctf" value="ctf" checked>
+            <label for="ctf">C > F</label><br>
+            <input type="radio" name="tempselection" id="ftc" value="ftc">
+            <label for="ftc">F > C</label>
+        </div>
+        <p id="tempoutput" style="clear: left;"></p>
+    </div>
+
+    <script>
+        const submit = () => {
+            console.log('Submitting');
+            let input = document.getElementById('temptxtbox').value;
+            //complete conversion if the input is a valid number, else show error text
+            if (input && !isNaN(input)) {
+                //clear error text
+                document.getElementById('btnlbl').innerHTML = '';
+                //check which conversion to do
+                if (document.getElementById('ctf').checked) {
+                    document.getElementById('tempoutput').innerHTML = `${input}C = ${(input * 9 / 5) + 32}F`;
+                } else {
+                    document.getElementById('tempoutput').innerHTML = `${input}F = ${(input - 32) * 5 / 9}C`;
+                }
+            } else {
+                document.getElementById('btnlbl').innerHTML = 'Enter a valid temperature';
+            }
+        }
+    </script>
+</body>
+
+</html>
